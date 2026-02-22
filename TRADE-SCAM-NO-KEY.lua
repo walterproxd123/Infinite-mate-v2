@@ -1,5 +1,4 @@
--- GUI falsa estilo "Vortex Trade Scam" (solo visual, no hace nada)
--- Para Delta Executor, Fluxus, etc.
+BEST TRADE SCAM BY wprxd_123
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "FakeVortexTrade"
