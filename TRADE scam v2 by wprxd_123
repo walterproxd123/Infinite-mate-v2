@@ -1,0 +1,116 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Close = Instance.new("TextButton")
+
+local FreezeFrame = Instance.new("Frame")
+local FreezeText = Instance.new("TextLabel")
+local FreezeToggle = Instance.new("TextButton")
+local FreezeCircle = Instance.new("Frame")
+
+local AcceptFrame = Instance.new("Frame")
+local AcceptText = Instance.new("TextLabel")
+local AcceptToggle = Instance.new("TextButton")
+local AcceptCircle = Instance.new("Frame")
+
+-- Parent
+ScreenGui.Parent = game.CoreGui
+
+-- Main frame
+Main.Parent = ScreenGui
+Main.Size = UDim2.new(0, 260, 0, 140)
+Main.Position = UDim2.new(0.5, -130, 0.5, -70)
+Main.BackgroundColor3 = Color3.fromRGB(15, 20, 35)
+Main.BorderSizePixel = 0
+Main.Active = true
+Main.Draggable = true
+
+-- Bordes redondeados
+local UICorner = Instance.new("UICorner", Main)
+UICorner.CornerRadius = UDim.new(0, 12)
+
+-- Título
+Title.Parent = Main
+Title.Size = UDim2.new(1, -30, 0, 30)
+Title.Position = UDim2.new(0, 10, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "Vortex Trade Scam"
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.TextSize = 16
+Title.Font = Enum.Font.GothamBold
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Botón cerrar
+Close.Parent = Main
+Close.Size = UDim2.new(0, 25, 0, 25)
+Close.Position = UDim2.new(1, -30, 0, 5)
+Close.BackgroundTransparency = 1
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(255,255,255)
+Close.Font = Enum.Font.GothamBold
+Close.TextSize = 16
+
+Close.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- Función crear toggle
+function createToggle(frame, textLabel, toggleButton, circle, yPos, text)
+
+    frame.Parent = Main
+    frame.Size = UDim2.new(1, -20, 0, 40)
+    frame.Position = UDim2.new(0, 10, 0, yPos)
+    frame.BackgroundColor3 = Color3.fromRGB(25, 30, 50)
+    frame.BorderSizePixel = 0
+
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 8)
+
+    textLabel.Parent = frame
+    textLabel.Size = UDim2.new(0.6, 0, 1, 0)
+    textLabel.Position = UDim2.new(0, 10, 0, 0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = text
+    textLabel.TextColor3 = Color3.fromRGB(255,255,255)
+    textLabel.Font = Enum.Font.Gotham
+    textLabel.TextSize = 14
+    textLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    toggleButton.Parent = frame
+    toggleButton.Size = UDim2.new(0, 45, 0, 22)
+    toggleButton.Position = UDim2.new(1, -55, 0.5, -11)
+    toggleButton.BackgroundColor3 = Color3.fromRGB(60,60,60)
+    toggleButton.Text = ""
+    toggleButton.BorderSizePixel = 0
+
+    Instance.new("UICorner", toggleButton).CornerRadius = UDim.new(1,0)
+
+    circle.Parent = toggleButton
+    circle.Size = UDim2.new(0, 18, 0, 18)
+    circle.Position = UDim2.new(0, 2, 0.5, -9)
+    circle.BackgroundColor3 = Color3.fromRGB(255,255,255)
+    circle.BorderSizePixel = 0
+
+    Instance.new("UICorner", circle).CornerRadius = UDim.new(1,0)
+
+    -- Toggle visual
+    local toggled = false
+
+    toggleButton.MouseButton1Click:Connect(function()
+
+        toggled = not toggled
+
+        if toggled then
+            toggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+            circle.Position = UDim2.new(1, -20, 0.5, -9)
+        else
+            toggleButton.BackgroundColor3 = Color3.fromRGB(60,60,60)
+            circle.Position = UDim2.new(0, 2, 0.5, -9)
+        end
+
+    end)
+
+end
+
+-- Crear toggles
+createToggle(FreezeFrame, FreezeText, FreezeToggle, FreezeCircle, 35, "Freeze Trade")
+createToggle(AcceptFrame, AcceptText, AcceptToggle, AcceptCircle, 85, "Force Accept")
